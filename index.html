@@ -25,9 +25,33 @@
                 <div class="placeholder-text">버튼을 눌러 번호를 생성하세요</div>
             </div>
 
+            <details class="settings-container">
+                <summary>고급 설정 (포함/제외 번호)</summary>
+                <div class="settings-content">
+                    <div class="input-group">
+                        <label for="include-numbers">포함할 번호 (쉼표로 구분)</label>
+                        <input type="text" id="include-numbers" placeholder="예: 1, 7, 42">
+                    </div>
+                    <div class="input-group">
+                        <label for="exclude-numbers">제외할 번호 (쉼표로 구분)</label>
+                        <input type="text" id="exclude-numbers" placeholder="예: 4, 13">
+                    </div>
+                </div>
+            </details>
+
             <button id="generate-btn" class="generate-btn">
                 <span>번호 생성하기</span>
             </button>
+
+            <div class="history-section">
+                <div class="history-header">
+                    <h2>최근 생성 기록</h2>
+                    <button id="clear-history-btn" class="clear-btn">기록 삭제</button>
+                </div>
+                <div id="history-list" class="history-list">
+                    <!-- History items will be added here -->
+                </div>
+            </div>
         </main>
 
         <footer>
