@@ -88,15 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Disable button during animation
-        generateBtn.disabled = true;
-        const originalBtnText = generateBtn.querySelector('span').textContent;
-        generateBtn.querySelector('span').textContent = '번호 추첨 중...';
-
         // Generate numbers
         let sortedNumbers;
         let attempts = 0;
         const maxAttempts = 100;
+        const originalBtnText = generateBtn.querySelector('span').textContent;
 
         do {
             const numbers = new Set(includeNums);
@@ -112,6 +108,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (attempts >= maxAttempts) {
             console.warn('Could not generate a unique combination after 100 attempts. Using last generated.');
         }
+
+        // Check animation toggle
+        const useAnimation = localStorage.getItem('useAnimation') !== 'false'; // Default true
+
+        if (!useAnimation) {
+            // Instant generation
+            numbersContainer.innerHTML = '';
+            sortedNumbers.forEach(num => {
+                const el = createNumberElement(num);
+                // Set final color immediately
+                el.style.backgroundColor = '';
+                el.style.animation = 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
+                numbersContainer.appendChild(el);
+            });
+
+            generateBtn.disabled = false;
+            generateBtn.querySelector('span').textContent = originalBtnText;
+            saveToHistory(sortedNumbers);
+            return;
+        }
+
+        // Disable button during animation
+        generateBtn.disabled = true;
+        generateBtn.querySelector('span').textContent = '번호 추첨 중...';
 
         // Clear previous numbers
         numbersContainer.innerHTML = '';
@@ -165,6 +185,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }, stopDelay);
         });
     }
+
+    // Animation Toggle Logic
+    const animationToggleBtn = document.getElementById('animation-toggle-btn');
+
+    // Load state
+    const savedAnimationState = localStorage.getItem('useAnimation');
+    if (savedAnimationState === 'false') {
+        animationToggleBtn.textContent = '⚡';
+    } else {
+        animationToggleBtn.textContent = '🎬';
+    }
+
+    animationToggleBtn.addEventListener('click', () => {
+        const currentState = localStorage.getItem('useAnimation') !== 'false';
+        const newState = !currentState;
+
+        localStorage.setItem('useAnimation', newState);
+        animationToggleBtn.textContent = newState ? '🎬' : '⚡';
+    });
 
     function calculateFrequencies() {
         const counts = {};
