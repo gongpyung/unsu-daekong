@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateLottoNumbers() {
         const includeInput = document.getElementById('include-numbers').value;
         const excludeInput = document.getElementById('exclude-numbers').value;
+        const mode = document.querySelector('input[name="gen-mode"]:checked').value;
 
         // Parse inputs
         const includeNums = parseInput(includeInput);
@@ -47,6 +48,29 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Calculate frequencies if needed
+        let candidatePool = Array.from({ length: 45 }, (_, i) => i + 1);
+        if (mode !== 'random' && winningNumbers.size > 0) {
+            const frequencies = calculateFrequencies();
+            if (mode === 'hot') {
+                // Top 20 frequent numbers
+                candidatePool = frequencies.slice(0, 20).map(item => item.number);
+            } else if (mode === 'cold') {
+                // Bottom 20 frequent numbers
+                candidatePool = frequencies.slice(-20).map(item => item.number);
+            }
+        }
+
+        // Filter candidate pool with exclude numbers
+        candidatePool = candidatePool.filter(n => !excludeNums.includes(n));
+
+        // Check if we have enough numbers
+        const needed = 6 - includeNums.length;
+        if (candidatePool.length < needed) {
+            alert(`선택한 모드(${mode})와 제외 번호 설정으로 인해 생성할 수 있는 번호가 부족합니다.`);
+            return;
+        }
+
         // Disable button during animation
         generateBtn.disabled = true;
         const originalBtnText = generateBtn.querySelector('span').textContent;
@@ -60,17 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
         do {
             const numbers = new Set(includeNums);
             while (numbers.size < 6) {
-                const randomNum = Math.floor(Math.random() * 45) + 1;
-                if (!excludeNums.includes(randomNum)) {
-                    numbers.add(randomNum);
-                }
+                const randomIndex = Math.floor(Math.random() * candidatePool.length);
+                const randomNum = candidatePool[randomIndex];
+                numbers.add(randomNum);
             }
             sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
             attempts++;
         } while (winningNumbers.has(sortedNumbers.join(',')) && attempts < maxAttempts);
 
         if (attempts >= maxAttempts) {
-            console.warn('Could not generate a unique combination after 100 attempts (likely due to strict constraints). Using last generated.');
+            console.warn('Could not generate a unique combination after 100 attempts. Using last generated.');
         }
 
         // Clear previous numbers
@@ -124,6 +147,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, stopDelay);
         });
+    }
+
+    function calculateFrequencies() {
+        const counts = {};
+        // Initialize counts
+        for (let i = 1; i <= 45; i++) counts[i] = 0;
+
+        // Count occurrences
+        winningNumbers.forEach(comboStr => {
+            // Assuming comboStr is "1,2,3,4,5,6"
+            const nums = comboStr.split(',').map(Number);
+            nums.forEach(n => {
+                if (counts[n] !== undefined) counts[n]++;
+            });
+        });
+
+        // Convert to array and sort
+        return Object.entries(counts)
+            .map(([num, count]) => ({ number: parseInt(num), count }))
+            .sort((a, b) => b.count - a.count); // Descending order (Hot first)
     }
 
     function createNumberElement(num, isSmall = false) {
@@ -216,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // First click - change to confirmation state
             const originalText = clearHistoryBtn.textContent;
-            clearHistoryBtn.textContent = '정말 삭제?';
+            clearHistoryBtn.textContent = '진짜 삭제?';
             clearHistoryBtn.classList.add('confirming');
             clearHistoryBtn.style.color = '#ef4444'; // Red color
             clearHistoryBtn.style.borderColor = '#ef4444';

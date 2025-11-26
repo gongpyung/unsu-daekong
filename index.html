@@ -27,6 +27,21 @@
                 <div class="placeholder-text">버튼을 눌러 번호를 생성하세요</div>
             </div>
 
+            <div class="mode-selector">
+                <label class="mode-option">
+                    <input type="radio" name="gen-mode" value="random" checked>
+                    <span class="mode-label">🎲 랜덤</span>
+                </label>
+                <label class="mode-option">
+                    <input type="radio" name="gen-mode" value="hot">
+                    <span class="mode-label">🔥 핫 (상위 20)</span>
+                </label>
+                <label class="mode-option">
+                    <input type="radio" name="gen-mode" value="cold">
+                    <span class="mode-label">🧊 콜드 (하위 20)</span>
+                </label>
+            </div>
+
             <details class="settings-container">
                 <summary>고급 설정 (포함/제외 번호)</summary>
                 <div class="settings-content">

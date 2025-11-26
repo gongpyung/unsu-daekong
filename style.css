@@ -24,7 +24,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: 
+    background-image:
         radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 20%),
         radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.15) 0%, transparent 20%);
 }
@@ -97,11 +97,31 @@ header p {
 }
 
 /* Different colors for number ranges (optional, but adds nice touch) */
-.lotto-number[data-range="1"] { background: linear-gradient(135deg, #facc15 0%, #eab308 100%); } /* 1-10 */
-.lotto-number[data-range="2"] { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); } /* 11-20 */
-.lotto-number[data-range="3"] { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); } /* 21-30 */
-.lotto-number[data-range="4"] { background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%); } /* 31-40 */
-.lotto-number[data-range="5"] { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); } /* 41-45 */
+.lotto-number[data-range="1"] {
+    background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+}
+
+/* 1-10 */
+.lotto-number[data-range="2"] {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+/* 11-20 */
+.lotto-number[data-range="3"] {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+/* 21-30 */
+.lotto-number[data-range="4"] {
+    background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+}
+
+/* 31-40 */
+.lotto-number[data-range="5"] {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+/* 41-45 */
 
 .generate-btn {
     background: linear-gradient(to right, var(--primary-color), var(--accent-color));
@@ -138,6 +158,7 @@ footer {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -156,17 +177,17 @@ footer {
     header h1 {
         font-size: 2rem;
     }
-    
+
     .lotto-number {
         width: 60px;
         height: 60px;
         font-size: 1.5rem;
     }
-    
+
     .container {
         padding: 1rem;
     }
-    
+
     .numbers-container {
         padding: 2rem 1rem;
         gap: 1rem;
@@ -265,15 +286,30 @@ footer {
 }
 
 /* Reuse range colors for history items */
-.history-number[data-range="1"] { background: linear-gradient(135deg, #facc15 0%, #eab308 100%); }
-.history-number[data-range="2"] { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
-.history-number[data-range="3"] { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
-.history-number[data-range="4"] { background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%); }
-.history-number[data-range="5"] { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); }
+.history-number[data-range="1"] {
+    background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+}
+
+.history-number[data-range="2"] {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.history-number[data-range="3"] {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.history-number[data-range="4"] {
+    background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+}
+
+.history-number[data-range="5"] {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
 
 
 .history-item {
-    justify-content: space-between; /* Changed from center to space-between */
+    justify-content: space-between;
+    /* Changed from center to space-between */
     align-items: center;
     padding: 0.8rem 1.2rem;
 }
@@ -379,3 +415,44 @@ footer {
     border-color: var(--primary-color);
 }
 
+
+/* Mode Selector */
+.mode-selector {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mode-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.mode-option input {
+    display: none;
+}
+
+.mode-label {
+    display: block;
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.mode-option input:checked+.mode-label {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.mode-option:hover .mode-label {
+    color: white;
+}
