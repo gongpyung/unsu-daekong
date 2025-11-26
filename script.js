@@ -203,9 +203,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function clearHistory() {
-        if (confirm('모든 기록을 삭제하시겠습니까?')) {
+        if (clearHistoryBtn.classList.contains('confirming')) {
+            // Second click - actually clear
             localStorage.removeItem('lottoHistory');
             renderHistory();
+
+            // Reset button
+            clearHistoryBtn.textContent = '기록 삭제';
+            clearHistoryBtn.classList.remove('confirming');
+            clearHistoryBtn.style.color = '';
+            clearHistoryBtn.style.borderColor = '';
+        } else {
+            // First click - change to confirmation state
+            const originalText = clearHistoryBtn.textContent;
+            clearHistoryBtn.textContent = '정말 삭제?';
+            clearHistoryBtn.classList.add('confirming');
+            clearHistoryBtn.style.color = '#ef4444'; // Red color
+            clearHistoryBtn.style.borderColor = '#ef4444';
+
+            // Reset after 3 seconds if not clicked again
+            setTimeout(() => {
+                if (clearHistoryBtn.classList.contains('confirming')) {
+                    clearHistoryBtn.textContent = originalText;
+                    clearHistoryBtn.classList.remove('confirming');
+                    clearHistoryBtn.style.color = '';
+                    clearHistoryBtn.style.borderColor = '';
+                }
+            }, 3000);
         }
     }
 
