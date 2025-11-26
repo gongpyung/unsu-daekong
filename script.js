@@ -18,6 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load history on startup
     loadHistory();
 
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    // Load theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.body.classList.add('light-mode');
+        themeToggleBtn.textContent = '☀️';
+    }
+
+    // Theme toggle event
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        themeToggleBtn.textContent = isLight ? '☀️' : '🌙';
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
     generateBtn.addEventListener('click', generateLottoNumbers);
     clearHistoryBtn.addEventListener('click', clearHistory);
 
