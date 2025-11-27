@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function parseInput(input) {
         if (!input.trim()) return [];
-        return input.split(',')
+        return input.split(/[, ]+/)
             .map(s => parseInt(s.trim(), 10))
             .filter(n => !isNaN(n));
     }

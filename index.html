@@ -19,8 +19,7 @@
         <header>
             <button id="theme-toggle" class="theme-toggle" aria-label="테마 변경">🌙</button>
             <button id="animation-toggle-btn" class="animation-toggle" aria-label="애니메이션 토글">🎬</button>
-            <h1><span class="title-gradient">운수대콩</span> 🚀</h1>
-            <p>콩부부의 인생역전, 오늘이 바로 그날! ✨</p>
+            <img src="unsu-daekong.png" alt="운수대콩 로고" class="logo">
         </header>
 
         <main>
@@ -32,15 +31,15 @@
             <div class="mode-selector">
                 <label class="mode-option">
                     <input type="radio" name="gen-mode" value="random" checked>
-                    <span class="mode-label">🎲 랜덤</span>
+                    <span class="mode-label">🎲 Random</span>
                 </label>
                 <label class="mode-option">
                     <input type="radio" name="gen-mode" value="hot">
-                    <span class="mode-label">🔥 핫 (상위 20)</span>
+                    <span class="mode-label">🔥 Hot</span>
                 </label>
                 <label class="mode-option">
                     <input type="radio" name="gen-mode" value="cold">
-                    <span class="mode-label">🧊 콜드 (하위 20)</span>
+                    <span class="mode-label">🧊 Cold</span>
                 </label>
             </div>
 
@@ -48,12 +47,12 @@
                 <summary>고급 설정 (포함/제외 번호)</summary>
                 <div class="settings-content">
                     <div class="input-group">
-                        <label for="include-numbers">포함할 번호 (쉼표로 구분)</label>
-                        <input type="text" id="include-numbers" placeholder="예: 1, 7, 42">
+                        <label for="include-numbers">포함할 번호 (띄어쓰기로 구분)</label>
+                        <input type="text" id="include-numbers" placeholder="예: 1 7 42">
                     </div>
                     <div class="input-group">
-                        <label for="exclude-numbers">제외할 번호 (쉼표로 구분)</label>
-                        <input type="text" id="exclude-numbers" placeholder="예: 4, 13">
+                        <label for="exclude-numbers">제외할 번호 (띄어쓰기로 구분)</label>
+                        <input type="text" id="exclude-numbers" placeholder="예: 4 13">
                     </div>
                 </div>
             </details>
