@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**운수대콩 (Unsu Daekong)** is a web-based Korean Lotto 6/45 number generator with a cute, modern UI. It's a static web application with no build step required.
+**Loddo** is a web-based Korean Lotto 6/45 number generator with a cute, modern UI. It's a static web application with no build step required.
 
 ## Architecture
 
