@@ -15,22 +15,22 @@ const modes: { key: GenerateMode; label: string; emoji: string; desc: string }[]
 
 const ModeSelector = ({ mode, onModeChange }: ModeSelectorProps) => {
   return (
-    <div className="flex gap-3 justify-center">
+    <div className="flex gap-2 sm:gap-3 justify-center flex-wrap sm:flex-nowrap">
       {modes.map((m) => (
         <button
           key={m.key}
           onClick={() => onModeChange(m.key)}
-          className={cn(
-            "px-5 py-3 rounded-2xl font-title text-base transition-all duration-200",
+           className={cn(
+            "px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-title text-xs sm:text-base transition-all duration-200 whitespace-nowrap",
             "border-2",
             mode === m.key
               ? "bg-primary text-primary-foreground border-primary shadow-lg scale-105"
               : "bg-card text-card-foreground border-border hover:border-primary/50 hover:scale-102"
           )}
         >
-          <span className="text-xl mr-1">{m.emoji}</span>
+           <span className="text-lg sm:text-xl mr-1">{m.emoji}</span>
           {m.label}
-          <p className="text-xs mt-1 opacity-70 font-body">{m.desc}</p>
+          <p className="text-[10px] sm:text-xs mt-1 opacity-70 font-body">{m.desc}</p>
         </button>
       ))}
     </div>
