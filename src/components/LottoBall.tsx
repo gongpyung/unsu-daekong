@@ -18,7 +18,7 @@ const LottoBall = ({ number, delay = 0, animate = true }: LottoBallProps) => {
   return (
     <div
       className={cn(
-        "w-14 h-14 rounded-full flex items-center justify-center text-foreground font-title text-xl font-bold shadow-lg",
+        "w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-foreground font-title text-lg sm:text-xl font-bold shadow-lg flex-shrink-0",
         getBallColor(number),
         animate && "animate-pop-in opacity-0"
       )}
