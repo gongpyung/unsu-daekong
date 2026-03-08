@@ -28,9 +28,9 @@ const ModeSelector = ({ mode, onModeChange }: ModeSelectorProps) => {
               : "bg-card text-card-foreground border-border hover:border-primary/50 hover:scale-102"
           )}
         >
-          <span className="text-xl mr-1">{m.emoji}</span>
+           <span className="text-lg sm:text-xl mr-1">{m.emoji}</span>
           {m.label}
-          <p className="text-xs mt-1 opacity-70 font-body">{m.desc}</p>
+          <p className="text-[10px] sm:text-xs mt-1 opacity-70 font-body">{m.desc}</p>
         </button>
       ))}
     </div>
