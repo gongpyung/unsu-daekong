@@ -75,7 +75,7 @@ const Index = () => {
       <div className="relative z-10 max-w-lg mx-auto px-4 py-8">
         {/* Title */}
         <div className="text-center mb-8">
-          <h1 className="font-title text-2xl sm:text-3xl md:text-5xl text-foreground mb-2 animate-bounce">
+          <h1 className="font-title text-2xl sm:text-3xl md:text-5xl text-foreground mb-2">
             🍀 운수대콩 🍀
           </h1>
           <p className="text-lg text-muted-foreground font-body">
