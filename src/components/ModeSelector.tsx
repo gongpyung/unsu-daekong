@@ -15,7 +15,7 @@ const modes: { key: GenerateMode; label: string; emoji: string; desc: string }[]
 
 const ModeSelector = ({ mode, onModeChange }: ModeSelectorProps) => {
   return (
-    <div className="flex gap-3 justify-center">
+    <div className="flex gap-2 sm:gap-3 justify-center flex-wrap sm:flex-nowrap">
       {modes.map((m) => (
         <button
           key={m.key}
