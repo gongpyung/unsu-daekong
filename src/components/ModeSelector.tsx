@@ -20,8 +20,8 @@ const ModeSelector = ({ mode, onModeChange }: ModeSelectorProps) => {
         <button
           key={m.key}
           onClick={() => onModeChange(m.key)}
-          className={cn(
-            "px-5 py-3 rounded-2xl font-title text-base transition-all duration-200",
+           className={cn(
+            "px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-title text-xs sm:text-base transition-all duration-200 whitespace-nowrap",
             "border-2",
             mode === m.key
               ? "bg-primary text-primary-foreground border-primary shadow-lg scale-105"
