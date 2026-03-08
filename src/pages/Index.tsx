@@ -89,9 +89,9 @@ const Index = () => {
         </div>
 
         {/* Number Display */}
-        <div className="bg-card rounded-3xl p-4 sm:p-8 shadow-lg border border-border mb-6 min-h-[100px] sm:min-h-[120px] flex items-center justify-center overflow-hidden">
+        <div className="bg-card rounded-3xl p-3 sm:p-8 shadow-lg border border-border mb-6 min-h-[100px] sm:min-h-[120px] flex items-center justify-center overflow-hidden">
           {numbers.length > 0 ?
-          <div className="flex gap-2 sm:gap-3 flex-wrap justify-center w-full" key={animKey}>
+          <div className="flex gap-1.5 sm:gap-3 flex-wrap justify-center w-full" key={animKey}>
               {numbers.map((n, i) =>
             <LottoBall key={`${animKey}-${n}`} number={n} delay={i * 120} />
             )}
