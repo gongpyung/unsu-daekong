@@ -70,6 +70,7 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
       <FloatingParticles />
+      <ThemeToggle />
 
       <div className="relative z-10 max-w-lg mx-auto px-4 py-8">
         {/* Title */}
