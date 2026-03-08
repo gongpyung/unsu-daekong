@@ -45,7 +45,7 @@ const Index = () => {
         id: crypto.randomUUID(),
         numbers: result,
         mode,
-        timestamp: Date.now(),
+        timestamp: Date.now()
       };
       const updated = [entry, ...history].slice(0, 20);
       setHistory(updated);
@@ -74,7 +74,7 @@ const Index = () => {
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="font-title text-5xl text-foreground mb-2 animate-bounce">
-            🎱 운수대쿵
+            🎱 운수대콩
           </h1>
           <p className="text-lg text-muted-foreground font-body">
             귀여운 로또 번호 생성기 ✨
@@ -88,17 +88,17 @@ const Index = () => {
 
         {/* Number Display */}
         <div className="bg-card rounded-3xl p-8 shadow-lg border border-border mb-6 min-h-[120px] flex items-center justify-center">
-          {numbers.length > 0 ? (
-            <div className="flex gap-3 flex-wrap justify-center" key={animKey}>
-              {numbers.map((n, i) => (
-                <LottoBall key={`${animKey}-${n}`} number={n} delay={i * 120} />
-              ))}
-            </div>
-          ) : (
-            <p className="text-muted-foreground font-body text-lg">
+          {numbers.length > 0 ?
+          <div className="flex gap-3 flex-wrap justify-center" key={animKey}>
+              {numbers.map((n, i) =>
+            <LottoBall key={`${animKey}-${n}`} number={n} delay={i * 120} />
+            )}
+            </div> :
+
+          <p className="text-muted-foreground font-body text-lg">
               {isGenerating ? "" : "버튼을 눌러 번호를 뽑아보세요! 🍀"}
             </p>
-          )}
+          }
         </div>
 
         {/* Generate Button */}
@@ -112,31 +112,31 @@ const Index = () => {
             includeNumbers={includeNumbers}
             excludeNumbers={excludeNumbers}
             onIncludeChange={setIncludeNumbers}
-            onExcludeChange={setExcludeNumbers}
-          />
+            onExcludeChange={setExcludeNumbers} />
+          
         </div>
 
         {/* History */}
-        {history.length > 0 && (
-          <div>
+        {history.length > 0 &&
+        <div>
             <h2 className="font-title text-xl text-foreground mb-4 text-center">
               📋 최근 기록
             </h2>
             <div className="space-y-3">
-              {history.map((entry) => (
-                <HistoryCard
-                  key={entry.id}
-                  entry={entry}
-                  onDelete={handleDeleteHistory}
-                  removing={removingId === entry.id}
-                />
-              ))}
+              {history.map((entry) =>
+            <HistoryCard
+              key={entry.id}
+              entry={entry}
+              onDelete={handleDeleteHistory}
+              removing={removingId === entry.id} />
+
+            )}
             </div>
           </div>
-        )}
+        }
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Index;
