@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import FloatingParticles from "@/components/FloatingParticles";
+import ThemeToggle from "@/components/ThemeToggle";
 import LottoBall from "@/components/LottoBall";
 import GenerateButton from "@/components/GenerateButton";
 import ModeSelector, { type GenerateMode } from "@/components/ModeSelector";
