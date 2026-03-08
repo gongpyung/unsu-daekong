@@ -74,7 +74,7 @@ const Index = () => {
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="font-title text-5xl text-foreground mb-2 animate-bounce">
-            🎱 운수대콩
+            🍀 운수대콩
           </h1>
           <p className="text-lg text-muted-foreground font-body">
             귀여운 로또 번호 생성기 ✨
