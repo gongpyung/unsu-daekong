@@ -15,22 +15,29 @@ const modes: { key: GenerateMode; label: string; emoji: string; desc: string }[]
 
 const ModeSelector = ({ mode, onModeChange }: ModeSelectorProps) => {
   return (
-    <div className="flex gap-2 sm:gap-3 justify-center flex-wrap sm:flex-nowrap">
-      {modes.map((m) => (
+    <div
+      role="group"
+      aria-label="번호 생성 모드"
+      className="flex w-full flex-wrap justify-center gap-2 sm:flex-nowrap sm:gap-3"
+    >
+      {modes.map((option) => (
         <button
-          key={m.key}
-          onClick={() => onModeChange(m.key)}
-           className={cn(
-            "px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-title text-xs sm:text-base transition-all duration-200 whitespace-nowrap",
-            "border-2",
-            mode === m.key
-              ? "bg-primary text-primary-foreground border-primary shadow-lg scale-105"
-              : "bg-card text-card-foreground border-border hover:border-primary/50 hover:scale-102"
+          key={option.key}
+          type="button"
+          onClick={() => onModeChange(option.key)}
+          aria-pressed={mode === option.key}
+          className={cn(
+            "flex-1 whitespace-nowrap rounded-xl border-2 px-3 py-2 font-title text-xs transition-all duration-200 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-base",
+            mode === option.key
+              ? "scale-105 border-primary bg-primary text-primary-foreground shadow-lg"
+              : "border-border bg-card text-card-foreground hover:border-primary/50 hover:scale-102"
           )}
         >
-           <span className="text-lg sm:text-xl mr-1">{m.emoji}</span>
-          {m.label}
-          <p className="text-[10px] sm:text-xs mt-1 opacity-70 font-body">{m.desc}</p>
+          <span className="mr-1 text-lg sm:text-xl">{option.emoji}</span>
+          <span>{option.label}</span>
+          <span className="mt-1 block font-body text-[10px] opacity-70 sm:text-xs">
+            {option.desc}
+          </span>
         </button>
       ))}
     </div>

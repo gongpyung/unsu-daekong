@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const EMOJIS = ["⭐", "💖", "🍀", "✨", "🌸", "🎵", "💫", "🌈"];
 
@@ -12,11 +12,15 @@ interface Particle {
   delay: number;
 }
 
-const FloatingParticles = () => {
+interface FloatingParticlesProps {
+  enabled?: boolean;
+}
+
+const FloatingParticles = ({ enabled = true }: FloatingParticlesProps) => {
   const [particles] = useState<Particle[]>(() =>
-    Array.from({ length: 12 }, (_, i) => ({
-      id: i,
-      emoji: EMOJIS[i % EMOJIS.length],
+    Array.from({ length: 12 }, (_, index) => ({
+      id: index,
+      emoji: EMOJIS[index % EMOJIS.length],
       left: Math.random() * 100,
       top: Math.random() * 100,
       size: 14 + Math.random() * 16,
@@ -25,21 +29,25 @@ const FloatingParticles = () => {
     }))
   );
 
+  if (!enabled) {
+    return null;
+  }
+
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {particles.map((p) => (
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+      {particles.map((particle) => (
         <span
-          key={p.id}
-          className="absolute animate-float opacity-30"
+          key={particle.id}
+          className="absolute opacity-30 motion-safe:animate-float"
           style={{
-            left: `${p.left}%`,
-            top: `${p.top}%`,
-            fontSize: `${p.size}px`,
-            animationDuration: `${p.duration}s`,
-            animationDelay: `${p.delay}s`,
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
+            fontSize: `${particle.size}px`,
+            animationDuration: `${particle.duration}s`,
+            animationDelay: `${particle.delay}s`,
           }}
         >
-          {p.emoji}
+          {particle.emoji}
         </span>
       ))}
     </div>

@@ -1,5 +1,8 @@
-import LottoBall from "./LottoBall";
 import { X } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
+import LottoBall from "./LottoBall";
 
 export interface HistoryEntry {
   id: string;
@@ -14,7 +17,11 @@ interface HistoryCardProps {
   removing?: boolean;
 }
 
-const HistoryCard = ({ entry, onDelete, removing }: HistoryCardProps) => {
+const HistoryCard = ({
+  entry,
+  onDelete,
+  removing,
+}: HistoryCardProps) => {
   const timeStr = new Date(entry.timestamp).toLocaleTimeString("ko-KR", {
     hour: "2-digit",
     minute: "2-digit",
@@ -22,24 +29,27 @@ const HistoryCard = ({ entry, onDelete, removing }: HistoryCardProps) => {
 
   return (
     <div
-      className={`bg-card rounded-2xl p-4 shadow-md border border-border transition-all duration-300 ${
-        removing ? "animate-fade-out-down" : "animate-slide-up"
-      }`}
+      className={cn(
+        "rounded-2xl border border-border bg-card p-4 shadow-md transition-all duration-300 motion-reduce:transition-none",
+        removing && "animate-fade-out-down"
+      )}
     >
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-sm text-muted-foreground font-body">
+      <div className="mb-3 flex items-center justify-between">
+        <span className="font-body text-sm text-muted-foreground">
           {timeStr} · {entry.mode === "random" ? "🎲" : entry.mode === "hot" ? "🔥" : "❄️"}
         </span>
         <button
+          type="button"
           onClick={() => onDelete(entry.id)}
-          className="text-muted-foreground hover:text-destructive transition-colors p-1 rounded-full hover:bg-muted"
+          className="rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-destructive"
+          aria-label={`${timeStr} 기록 삭제`}
         >
           <X size={16} />
         </button>
       </div>
-      <div className="flex gap-2 justify-center flex-wrap">
-        {entry.numbers.map((n, i) => (
-          <LottoBall key={i} number={n} animate={false} />
+      <div className="flex flex-wrap justify-center gap-2">
+        {entry.numbers.map((number) => (
+          <LottoBall key={`${entry.id}-${number}`} number={number} animate={false} />
         ))}
       </div>
     </div>
