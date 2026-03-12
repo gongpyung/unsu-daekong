@@ -1,6 +1,25 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ## [Unreleased]
+
+## [0.3.0] - 2026-03-13
+
+### Added
+- GitHub Actions 배포 워크플로우 (Vite 빌드 → GitHub Pages)
+- 매주 당첨번호 자동 업데이트 워크플로우
+- OG 메타 태그 및 CNAME 설정 (`loddo.kr`)
+- README.md, CHANGELOG.md, CLAUDE.md 프로젝트 문서
+
+### Fixed
+- 번호 생성 완료 후 공이 사라졌다 재생성되는 현상
+- 애니메이션 토글 시 최근 기록 카드가 재생성되는 현상
+
+## [0.2.0] - 2026-03-12
 
 ### Added
 - 역대 당첨번호 기반 핫/콜드 번호 빈도 분석 (`calculateFrequencies`)
@@ -10,7 +29,6 @@
 - 즉시 뽑기 모드 (애니메이션 토글)
 - 기록 전체 삭제 기능 (2단계 확인)
 - 핵심 로직 테스트 코드 (Vitest, 17개 테스트)
-- CLAUDE.md 프로젝트 가이드
 
 ### Changed
 - 핫/콜드 번호를 하드코딩에서 실제 당첨 데이터 기반으로 변경
@@ -18,10 +36,9 @@
 - 모드 선택 버튼 동일 크기로 정규화
 - 브라우저 탭 제목을 "loddo"로 변경
 - 우측 상단 테마/애니메이션 버튼 세로 배치
-- 고급 설정 제목 가운데 정렬
-- 최근 기록 제목 가운데 정렬
+- 고급 설정 및 최근 기록 제목 가운데 정렬
 
-## [0.1.0] - 초기 버전
+## [0.1.0] - 2026-03-10
 
 ### Added
 - 랜덤/핫번호/콜드번호 3가지 모드 번호 생성
